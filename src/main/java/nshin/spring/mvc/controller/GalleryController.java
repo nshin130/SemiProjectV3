@@ -8,15 +8,15 @@ public class GalleryController {
 
     @GetMapping("/gallery/list")
     public String list() {
-    return "gallery/list.tiles";
+        return "gallery/list.tiles";
     }
 
-    @GetMapping("/board/view")
+    @GetMapping("/gallery/view")
     public String view() {
         return "gallery/view.tiles";
     }
 
-    @GetMapping("/board/write")
+    @GetMapping("/gallery/write")
     public String writelist() {
         return "gallery/write.tiles";
     }

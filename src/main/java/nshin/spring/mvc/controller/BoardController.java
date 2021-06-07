@@ -17,7 +17,7 @@ public class BoardController {
     }
 
     @GetMapping("/board/write")
-    public String writelist() {
+    public String write() {
         return "board/write.tiles";
     }
 
