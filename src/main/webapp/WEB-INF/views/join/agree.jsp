@@ -392,6 +392,5 @@ Copyright © Kakao Corp. All rights reserved.
                <button type="button" id="noagree" class="btn btn-danger btn-sm">동의하지 않습니다.</button>
            </div>   <!-- 버튼 -->
 
+</div>
 
-
-          </div>
