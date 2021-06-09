@@ -45,19 +45,19 @@
             <div class="form-group row">
                 <label for="userid" class="text-danger text-right col-form-label col-2">아이디</label>
                 <input type="text" name="userid" id="userid" class="border-danger form-control col-3">
-                <span class="col-form-label"><small class="text muted ">&nbsp; 8~16자의 영문 소문자,숫자와 특수기호&#40;&#95;&#41; 만 사용할 수 있습니다.</small></span>
+                <span id="uidmsg" class="col-form-label"><small class="text muted">&nbsp; 8~16자의 영문 소문자,숫자와 특수기호&#40;&#95;&#41; 만 사용할 수 있습니다.</small></span>
             </div><!--아이디-->
 
             <div class="form-group row">
                 <label for="passwd" class="text-danger col-form-label col-2 text-right">비밀번호</label>
                 <input type="password" name="passwd" id="passwd" class="border-danger form-control col-3">
-                <span class="col-form-label"><small class="text muted">&nbsp; 8~16 자의 영문 대소문자&#44;숫자 및 특수문자 사용할 수 있습니다.</small></span>
+                <span class="col-form-label" id="pwdmsg1"><small class="text muted">&nbsp; 8~16 자의 영문 대소문자&#44;숫자 및 특수문자 사용할 수 있습니다.</small></span>
             </div><!--비번-->
 
             <div class="form-group row">
                 <label for="pwdchk" class="text-danger col-form-label text-right col-2">비밀번호 확인</label>
                 <input type="password" name="pwdchk" id="pwdchk" class="border-danger form-control col-3">
-                <span class="col-form-label"><small class="text muted">&nbsp; 이전 항목에서 입력했던 비밀번호를 한번 더 입력하세요.</small></span>
+                <span class="col-form-label" id="pwdmsg"><small class="text muted">&nbsp; 이전 항목에서 입력했던 비밀번호를 한번 더 입력하세요.</small></span>
             </div><!--비번확인-->
 
             <div class="form-group row">

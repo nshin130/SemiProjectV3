@@ -28,7 +28,7 @@ public class MemberDAOImpl implements MemberDAO {
 
     @Override
     public int selectOneUserid(String uid) {
-        return 0;
+        return sqlSession.selectOne("member.checkUserid", uid);
     }
 
     @Override
