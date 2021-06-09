@@ -43,17 +43,18 @@
 
                     <div class="modal-header">
                         <h3>로그인</h3>
-                        <h3><button type="button" class="btn btn-light btn-sm">닫기</button></h3>
+                        <h3><button type="button" id="lgmbtn"
+                                    class="btn btn-light btn-sm">닫기</button></h3>
                     </div>
 
                     <div class="modal-body">
                         <form name="loginfrm" id="loginfrm" method="post">
                             <div class="form-group row text-danger">
                                 <label for ="userid" class="col-form-label col-4 text-right ">아이디</label>
-                                <input type="text" name="userid" class="form-control col-5 border-danger"></div>
+                                <input type="text" id="userid" name="userid" class="form-control col-5 border-danger"></div>
                             <div class="form-group row text-danger">
-                                <label for="pwd" class="col-4 text-right">비빌번호</label>
-                                <input type="password" name="pwd" id="pwd" class="form-control col-5  border-danger">
+                                <label for="passwd" class="col-4 text-right">비빌번호</label>
+                                <input type="password" name="passwd" id="passwd" class="form-control col-5  border-danger">
                             </div>
                             <div class="form-group row">
                                 <div class="col-4"></div>
@@ -67,7 +68,8 @@
 
 
                     <div class="modal-footer justify-content-center">
-                        <button type="button" class="btn btn-danger btn-sm text-white">로그인</button>
+                        <button type="button" id="loginbtn"
+                                class="btn btn-danger btn-sm text-white">로그인</button>
                         <button type="button" class="btn btn-warning btn-sm text-white">아이디/비밀번호 찾기</button>
                     </div>
                 </div>
