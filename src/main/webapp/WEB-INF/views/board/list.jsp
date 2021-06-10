@@ -1,6 +1,7 @@
 <%@page pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!--
     데이터가 너무 많아 한페이지에 출력하기 여려운 경우
@@ -11,10 +12,44 @@
     총 페이지 수: 5페이지
     cp 라는 질의문자 이용 (current page)
 -->
+<!--
+    게시판 네비게이션
+    현재 페이지에 따라 보여줄 페이지 블럭을 결정
+    ig) 총 페이지 수가 27일때
+    cp = 1 : 1 2 3 4 5 6 7 8 9 10
+    cp = 2 : 1 2 3 4 5 6 7 8 9 10
+    cp = 9 : 1 2 3 4 5 6 7 8 9 10
+    cp = 11 : 11 12 13 14 15 16 17 18 19 20
+    cp = 17 : 11 12 13 14 15 16 17 18 19 20
+    cp = 23 : 21 22 23 24 25 26 27
+    따하서, cp에 따라 페이지 블럭의 시작값을 계산
+    perpage = 30
+    startpage =  ((cp - 1) / 10) * 10 + 1
+    endpage = startpage + 9
+    (cp:독립변수 startpage:종속변수)
+-->
+
+<fmt:parseNumber var="cp" value="${param.cp}" />
+<fmt:parseNumber var="sp" value="${(cp-1)/10}" integerOnly="true"/> <%--소수점자르기 --%>
+<fmt:parseNumber var="sp" value="${sp * 10 + 1}" />
+<fmt:parseNumber var="ep" value="${sp+9}" />
+
+<%-- 총 게시물 수를 페이지당 게시물 수로 나눔 : 총페이지 수 --%>
+<fmt:parseNumber var="tp" value="${bdcnt / 30}" integerOnly="true"/>
+<c:if test="${(bdcnt % 30) > 0 }">
+    <fmt:parseNumber var="tp" value="${tp + 1}" />
+</c:if>
+
+<%-- 글 번호 --%>
+<fmt:parseNumber var="snum" value="${bdcnt - (cp -1) * 30}" />
+
+<%-- 페이지 링크 --%>
+<c:set var ="pglink" value="/board/list?cp=" />
+
 
 <div id="main">
   <div>
-      <h3><i class="fas fa-comments"></i> 자유 게시판</h3>
+      <h3><i class="fas fa-comments"></i> 자유 게시판 ${tp} / ${bdcnt} </h3>
       <hr>
   </div><!--페이지타이틀-->
 
@@ -22,19 +57,21 @@
 
     <div class="col-5 offset-1">
         <div class="form-group row border-danger">
-            <select class="form-control col-3 border-dark" name="findtype" id="findytpe">
+            <select class="form-control col-3 border-dark" name="findtype" id="findtype">
                 <option value="title">제목</option>
                 <option value="ttlcont">제목+내용</option>
                 <option value="userid">작성자</option>
                 <option value="contents">내용</option>
             </select>&nbsp;
             <input type="text" name="findkey" id="findkey" class="form-control col-5 border-dark">&nbsp;
-            <button type="button" id="findbtn" class="btn btn-dark btn-sm"><i class="fas fa-search"></i> 검색</button>
+            <button type="button" id="findbtn" class="btn btn-dark btn-sm">
+                <i class="fas fa-search"></i> 검색</button>
         </div>
     </div>
 
     <div class="col-5 text-right">
-      <button type="button" class="btn btn-light" id="newbdbtn"><i class="fas fa-plus-circle"></i> 새글 쓰기</button>
+      <button type="button" class="btn btn-light" id="newbdbtn">
+          <i class="fas fa-plus-circle"></i> 새글 쓰기</button>
     </div>
 
   </div> <!-- 새글쓰기/검색관련 버튼 -->
@@ -67,12 +104,13 @@
 
                   <c:forEach var="bd" items="${bds}">
                   <tr>
-                      <td>${bd.bdno}</td>
-                      <td><a href="view.html">${bd.title}</a></td>
+                      <td>${snum}</td>
+                      <td><a href="/board/view?bdno=${bd.bdno}">${bd.title}</a></td>
                       <td>${bd.userid}</td>
-                      <td>${fn:substring(bd.regdate,0,11)}</td>
+                      <td>${fn:substring(bd.regdate,0,10)}</td>
                       <td>${bd.thumbup}</td>
                       <td>${bd.views}</td>
+                      <c:set var="snum" value="${snum-1}" />
                   </tr>
                   </c:forEach>
 
@@ -86,21 +124,33 @@
   <div class="row">
       <div class="col-12">
           <ul class="pagination justify-content-center">
-              <li class="page-item"><a href="#" class="page-link">이전</a></li>
 
-              <li class="page-item active"><a href="#" class="page-link">1</a></li>
-              <li class="page-item"><a href="#" class="page-link">2</a></li>
-              <li class="page-item"><a href="#" class="page-link">3</a></li>
-              <li class="page-item"><a href="#" class="page-link">4</a></li>
-              <li class="page-item"><a href="#" class="page-link">5</a></li>
-              <li class="page-item"><a href="#" class="page-link">6</a></li>
-              <li class="page-item"><a href="#" class="page-link">7</a></li>
-              <li class="page-item"><a href="#" class="page-link">8</a></li>
-              <li class="page-item"><a href="#" class="page-link">9</a></li>
-              <li class="page-item"><a href="#" class="page-link">10</a></li>
+              <%-- 이전버튼이 작동되어야 할때는 sp가 11 보다 클때 --%>
+              <li class="page-item <c:if test="${sp lt 11}">disabled</c:if>">
+                  <a href="${pglink}${sp-10}" class="page-link">이전</a></li>
+
+              <%-- 반복문을 이용해 페이지 링크 생성 --%>
+              <c:forEach var="i" begin="${sp}" end="${ep}" step="1">
+                  <%-- 표시되는 페이지 i가 총페이지수보다 작거나는같을 동안만 출력 --%>
+                  <c:if test="${i le tp}">
+                      <c:if test="${cp eq i}" >
+                      <li class="page-item active">
+                          <a href="${pglink}${i}" class="page-link">${i}</a></li>
+                      </c:if>
+
+                      <c:if test="${cp ne i}" >
+                        <li class="page-item">
+                            <a href="${pglink}${i}" class="page-link">${i}</a></li>
+                      </c:if>
+                  </c:if>
+              </c:forEach>
+
+              <%-- 다음버튼이 작동되어야 할때는 --%>
+              <li class="page-item <c:if test="${ep gt tp}">disabled</c:if>">
+                  <a href="${pglink}${sp+10}" class="page-link">다음</a></li>
 
 
-              <li class="page-item"><a href="#" class="page-link">다음</a></li>
+
           </ul>
       </div>
   </div><!-- pagination -->

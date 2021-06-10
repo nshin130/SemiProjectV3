@@ -1,13 +1,10 @@
-<%@page pageEncoding="UTF-8"%>
+<%@ page pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-    <style>
-        .tbbg1{background: #F5F5F5}  
-        .tbbg3{background: #F5F5F5}
-        .pushdwn{ margin-top: 50px}
-        .cmtbg1{background: aliceblue; padding:4px 0}
-        .cmtbg2{background: #F5F5F5; padding:4px 0}
-        .pushright{float: right}
-    </style>
+<%-- 줄바꿈 기호를 변수로 생성:br 태그변환 필요 --%>
+<c:set var="newChar" value="
+" scope="application"/>
 
 
 <div id="main">
@@ -33,23 +30,16 @@
                   <table class="table col-10 offset-1">
                       <tr class="tbbg1 text-center">
                           <th colspan="2">
-                              <h2>There is no one who loves pain itself</h2>
+                              <h2>${bd.title}</h2>
                           </th>
                       </tr>
                        <tr class="tbbg2">
-                          <td class="width: 50%">nshin130</td>
-                          <td class="text-right">2021.05.21 10:58:23 / 22 / 33</td>
+                          <td class="width: 50%">${bd.userid}</td>
+                          <td class="text-right"> ${bd.regdate}/ ${bd.thumbup} / ${bd.views} </td>
                       </tr>
-                      <tr class="tbbg3">
+                      <tr class="tbbg3 bdcsize">
                           <td colspan="2">
-                              <p>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."<br>
-                              "There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."</p>
-                              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                              <p>Aenean scelerisque ante sed dui mollis, eu laoreet metus efficitur. Phasellus consectetur sodales eros, at consequat leo molestie eu. Nam mattis metus et neque interdum, in pulvinar purus semper. Proin mattis sapien et lectus tincidunt, a ornare lorem feugiat.</p>
-                              <p>Integer ullamcorper elementum commodo. Etiam lobortis pretium mi, ut condimentum ipsum rutrum vel. Proin nec lectus blandit, laoreet dolor aliquet, varius massa. Mauris in ante in mauris sodales consequat.</p>
-                              <p>Duis feugiat lacinia augue, ac posuere velit porta quis. Maecenas efficitur ornare magna ut fermentum. Ut aliquet hendrerit odio sit amet consectetur. Aliquam ac egestas eros. Etiam luctus elit ante, et euismod metus efficitur sit amet. Cras ut aliquam velit.</p>
-                              <p>Integer ullamcorper elementum commodo. Etiam lobortis pretium mi, ut condimentum ipsum rutrum vel. Proin nec lectus blandit, laoreet dolor aliquet, varius massa. Mauris in ante in mauris sodales consequat.</p>
-                              <p>Aenean scelerisque ante sed dui mollis, eu laoreet metus efficitur. Phasellus consectetur sodales eros, at consequat leo molestie eu. Nam mattis metus et neque interdum, in pulvinar purus semper. Proin mattis sapien et lectus tincidunt, a ornare lorem feugiat.</p>
+                              ${fn:replace(bd.contents, newChar, "<br>")}
                           </td>
                       </tr>
                   </table>
@@ -57,8 +47,16 @@
 
               <div class="row">
                   <div class="col-5 offset-1">
-                   <button type="button" class="btn btn-warning btn-sm text-white"><i class="fas fa-edit"></i> 수정하기</button>
-                   <button type="button" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> 삭제하기</button>
+                   <%-- 자신이 작성한 글에 대해서만 수정/삭제 버튼이 표시되어야함 --%>
+                     <c:if test="${not empty UID and UID eq bd.userid}">
+                       <button type="button"
+                               class="btn btn-warning btn-sm text-white" >
+                           <i class="fas fa-edit"></i> 수정하기</button>
+
+                       <button type="button"
+                               class="btn btn-danger btn-sm">
+                           <i class="fas fa-trash"></i> 삭제하기</button>
+                     </c:if>
                 </div>
 
                 <div class="col-5 text-right">
