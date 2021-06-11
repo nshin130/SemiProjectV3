@@ -32,3 +32,36 @@ $('#findbtn').on('click', function() {
        location.href=url;
    }
 });
+
+// findtype tag setting 말머리
+// $('#findtype').val('${param.findtype}').prop('selected', 'true');
+// findtype 밑에 있는 여러 옵션들중 value 값이 ${}인것중에서 속성값 selected를 true?
+
+// new board reply
+$('#newbrbtn').on('click', function() {
+   if($('#reply').val() ==' ') alert('댓글을 작성하세요');
+   else {
+       const frm = $('#replyfrm');
+       frm.attr('method', 'post');
+       frm.attr('action', '/reply/write');
+       frm.submit();
+   }
+});
+
+// show reply
+function addReply(rno) {
+    $('#replyModal').modal('show');
+    $('#rpno').val(rno); // 대댓글 작성시 부모댓글 번호를 넘겨줌
+}
+
+//new reply
+$('#newrrpbtn').on('click',  function() {
+    if ($('rreply').val() == '') alert ('대댓글을 작성하세요');
+    else {
+        const frm = $('#rpfrm');
+        frm.attr('method', 'post');
+        frm.attr('action', '/rreply/write');
+        frm.submit();
+    }
+
+});
