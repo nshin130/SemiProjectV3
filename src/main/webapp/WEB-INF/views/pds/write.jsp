@@ -18,14 +18,14 @@
             </div>
 
           <div class="card card-body bg-light col-10 offset-1">
-              <form name="boardfrm" id="boardfrm">
+              <form name="pdsfrm" id="pdsfrm" enctype="multipart/form-data">
                         <div class="form-group row">
                             <label for="title" class="text-danger col-form-label text-right col-2">제목</label>
                             <input type="text" id="title" name="title" class="border-danger form-control col-9">
                         </div>
                         <div class="form-group row">
                             <label for="userid" class="text-danger col-form-label text-right col-2">작성자</label>
-                            <input type="text" id="title" name="title" class="border-danger form-control col-9" readonly>
+                            <input type="text" id="userid" name="userid" class="border-danger form-control col-9" readonly value="${UID}">
                         </div>
                         <div class="form-group row">
                             <label for="contents" class="text-right text-danger col-form-label col-2">본문내용</label>
@@ -33,7 +33,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="file1" class="text-right text-danger col-form-label col-2">파일첨부</label>
+                            <label for="file1" class="text-right text-danger col-form-label col-2" for="file1">파일첨부</label>
                             <div class="custom-file col-9">
                                 <input type="file" name="file" id="file1" class="custom-file-input">
                                 <label class="custom-file-label">첨부할 파일을 선택하세요</label>
@@ -46,6 +46,7 @@
                                 <input type="file" name="file" id="file3" class="custom-file-input">
                                 <label class="custom-file-label">첨부할 파일을 선택하세요</label>
                             </div>
+                            <!-- name 이름 일치 시킴(멀티파트사용시) -->
                         </div>
 
                         <div class="form-group row">
@@ -55,18 +56,16 @@
                             
                             
                         </div>
-                        <div class="form-group row">
-                            <label class="col-2 col-form-label"></label>
-                            <input type="text" id="captcha" name="captcha" class="border-danger form-control col-2">&nbsp;
-                            <button type=button id="captchaimgbtn" class="btn btn-dark"><i class="fas fa-question-circle"></i> 다른 capcha보기</button>
-                        </div>
 
-
-                <hr class="col-10">
-                <div class="col-12 text-center">
-                    <button type="button" id="donebtn" class="btn btn-primary btn-sm"><i class="fas fa-check"></i> 입력완료</button>
-                    <button type="button" id="cnclbtn" class="btn btn-danger btn-sm"><i class="fas fa-times"></i> 취소하기</button>
-                </div><!-- 버튼들 -->
+                  <div class="form-group row">
+                      <hr class="col-10">
+                      <div class="col-12 text-center">
+                          <button type="button" class="btn btn-primary" id="newpds">
+                              <i class="fas fa-check-circle"></i> 입력완료</button>
+                          <button type="reset" class="btn btn-danger">
+                              <i class="fas fa-times-circle"></i> 다시입력</button>
+                      </div>
+                  </div><!-- 버튼들 -->
 
               </form> <!-- form -->
           </div> <!-- card body -->
@@ -74,6 +73,8 @@
 
           </div>
 
+  </div>
 
-      </div>
+
+
  

@@ -10,4 +10,9 @@ public class IndexController {
     public String index() {
         return "index.tiles";
     }
+
+    @GetMapping("/pds")
+    public String pds() {
+        return "pds.tiles";
+    }
 }
