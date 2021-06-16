@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
 @Controller
 public class PdsController {
@@ -72,10 +73,10 @@ public class PdsController {
         return "redirect:/pds/list?cp=1";
     }
 
-    // 다운로드 처리
-    // 컨트롤러 메서드에 ResponseBody 어노테이션을 사용하면
-    // view를 이용해서 데이터를 출력하지 않고
-    // HTTP 응답으로 직접 데이터를 브라우져로 출력할 수 있음
+     // 다운로드 처리
+     // 컨트롤러 메서드에 ResponseBody 어노테이션을 사용하면
+     // view를 이용해서 데이터를 출력하지 않고
+     // HTTP 응답으로 직접 데이터를 브라우져로 출력할 수 있음
     @ResponseBody
     @GetMapping("/pds/down")
     public void pdsdown(String pno, String order, HttpServletResponse res) {

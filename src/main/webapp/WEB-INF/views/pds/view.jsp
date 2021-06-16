@@ -18,17 +18,17 @@
 
 <%--첨부파일 아이콘 선택--%>
 <c:set var="atticon1" value="${p.ftype1}" />
-<c:if test="p.ftype1 ne 'zip' and p.ftype1 ne 'jpg' and p.ftype1 ne 'txt'}">
+<c:if test="${p.ftype1 ne 'zip' and p.ftype1 ne 'jpg' and p.ftype1 ne 'txt'}">
     <c:set var="atticon1" value="file" />
 </c:if>
 
 <c:set var="atticon2" value="${p.ftype2}" />
-<c:if test="p.ftype2 ne 'zip' and p.ftype2 ne 'jpg' and p.ftype2 ne 'txt'}">
+<c:if test="${p.ftype2 ne 'zip' and p.ftype2 ne 'jpg' and p.ftype2 ne 'txt'}">
     <c:set var="atticon2" value="file" />
 </c:if>
 
 <c:set var="atticon3" value="${p.ftype3}" />
-<c:if test="p.ftype3 ne 'zip' and p.ftype3 ne 'jpg' and p.ftype3 ne 'txt'}">
+<c:if test="${p.ftype3 ne 'zip' and p.ftype3 ne 'jpg' and p.ftype3 ne 'txt'}">
     <c:set var="atticon3" value="file" />
 </c:if>
 
@@ -74,7 +74,7 @@
 
               <tr>
                   <td colspan="2" class="tbbg4 patxt"> 첨부1 &nbsp;&nbsp;
-                      <img src="${atticon1}.png" >
+                      <img src="/img/${atticon1}.png" >
                       <a href="/pds/down?pno=${p.pno}&order=1">${p.fname1}</a>
                       (${p.fsize1}KB , ${p.fdown1}회 다운로드함)
                   </td>
@@ -83,7 +83,7 @@
               <c:if test="${p.fname2 ne '-'}">
               <tr>
                   <td colspan="2" class="tbbg5 patxt"> 첨부2 &nbsp;&nbsp;
-                      <img src="${atticon2}.png" >
+                      <img src="/img/${atticon2}.png" >
                       <a href="/pds/down?pno=${p.pno}&order=2">${p.fname2}</a>
                       (${p.fsize2}KB , ${p.fdown2}회 다운로드함)
                   </td>
@@ -92,7 +92,7 @@
               <c:if test="${p.fname3 ne '-'}">
               <tr>
                   <td colspan="2" class="tbbg6 patxt"> 첨부3 &nbsp;&nbsp;
-                      <img src="${atticon3}.png" >
+                      <img src="/img/${atticon3}.png" >
                       <a href="/pds/down?pno=${p.pno}&order=3">${p.fname3}</a>
                       (${p.fsize3}KB , ${p.fdown3}회 다운로드함)
                   </td>

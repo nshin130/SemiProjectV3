@@ -25,7 +25,8 @@
                         </div>
                         <div class="form-group row">
                             <label for="userid" class="text-danger col-form-label text-right col-2">작성자</label>
-                            <input type="text" id="userid" name="userid" class="border-danger form-control col-9" readonly value="${UID}">
+                            <input type="text" id="userid" name="userid"
+                                   class="border-danger form-control col-9" readonly value="${UID}">
                         </div>
                         <div class="form-group row">
                             <label for="contents" class="text-right text-danger col-form-label col-2">본문내용</label>
@@ -53,8 +54,6 @@
                             <label class="text-danger col-form-label text-right col-2">자동<br>입력방지</label>
                             <div class="g-recaptcha" data-sitekey="6LdjIwgbAAAAADR_OcUJETHsPvtg6PB5ycg6Z9Zz"></div>
    							<input type="hidden" id="g-recaptcha" name="g-recaptcha" />
-                            
-                            
                         </div>
 
                   <div class="form-group row">

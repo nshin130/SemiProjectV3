@@ -24,7 +24,8 @@
         </div>
 
         <div class="col-5 text-right">
-          <button type="button" class="btn btn-light" id="newpdsbtn"><i class="fas fa-plus-circle"></i> 새글 쓰기</button>
+          <button type="button" class="btn btn-light" id="newpdsbtn">
+              <i class="fas fa-plus-circle"></i> 새글 쓰기</button>
         </div>
 
       </div> <!-- 새글쓰기/검색관련 버튼 -->
