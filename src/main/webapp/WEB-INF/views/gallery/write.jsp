@@ -51,17 +51,9 @@
 
                         <div class="form-group row">
                             <label class="text-danger col-form-label text-right col-2">자동<br>입력방지</label>
-                          <div class="g-recaptcha" data-sitekey="6LdjIwgbAAAAADR_OcUJETHsPvtg6PB5ycg6Z9Zz"></div>
-   					<input type="hidden" id="g-recaptcha" name="g-recaptcha" />	
-                         
-                         
+                            <div class="g-recaptcha" data-sitekey="6LdjIwgbAAAAADR_OcUJETHsPvtg6PB5ycg6Z9Zz"></div>
+   					        <input type="hidden" id="g-recaptcha" name="g-recaptcha" />
                         </div>
-                        <div class="form-group row">
-                            <label class="col-2 col-form-label"></label>
-                            <input type="text" id="captcha" name="captcha" class="border-danger form-control col-2">&nbsp;
-                            <button type=button id="captchaimgbtn" class="btn btn-dark"><i class="fas fa-question-circle"></i> 다른 capcha보기</button>
-                        </div>
-
 
                 <hr class="col-10">
                 <div class="col-12 text-center">
